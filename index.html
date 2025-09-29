@@ -3,66 +3,141 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday to my dear chee htote</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Happy Birthday 🎉</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 15px;
+      background: url('23.png') no-repeat center center fixed;
+      background-size: cover;
+      overflow-x: hidden;
+    }
+
+    /* Confetti */
+    .confetti {
+      position: fixed;
+      top: -10px;
+      width: 10px;
+      height: 10px;
+      opacity: 0.8;
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    /* Wish text overlay */
+    .wish-text {
+      max-width: 420px;
+      text-align: center;
+      margin: 40px 0 20px 0;
+      color: #fff;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+    }
+
+    .wish-text h2 {
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+
+    .wish-text p {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* Video box */
+    .video-box {
+      max-width: 420px;
+      width: 100%;
+      background: rgba(30, 30, 30, 0.7);
+      border-radius: 16px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+      overflow: hidden;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 25px;
+      color: #f5f5f5;
+    }
+
+    /* Video styling with 16:9 ratio */
+    video {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      border-radius: 10px;
+      display: block;
+      object-fit: contain;
+    }
+
+    .caption {
+      margin-top: 20px;
+      font-size: 15px;
+      color: #eee;
+      line-height: 1.6;
+      text-align: justify;
+      padding: 10px;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    
-    <!-- Tabs -->
-    <div class="tabs">
-      <div class="tab active" onclick="showContent('video')">🎥</div>
-      <div class="tab" onclick="showContent('letter')">💌</div>
-      <div class="tab" onclick="showContent('collage')">🖼️</div>
-    </div>
-    
-    <!-- Main content -->
-    <div class="content">
-      <!-- Video section -->
-      <div id="video" class="content-section active">
-        <video controls>
-          <source src="your-video.mp4" type="video/mp4">
-          Your browser does not support video.
-        </video>
-      </div>
 
-      <!-- Letter section -->
-      <div id="letter" class="content-section">
-        <h3>Happy Birthday ❤️</h3>
-        <p>Dear [Her Name],<br>
-        Wishing you the happiest day filled with love, joy, and all the things that make you smile.  
-        Always here for you 💕</p>
-      </div>
+  <!-- Wish text over background -->
+  <div class="wish-text">
+    <h2>Happy Birthday ❤️</h2>
+    <p>
+      Dear Chee Htote,<br>
+      Happy Birthday ❤️ <br><br>
+      Since we first met back in 2019, you’ve always been so close to me, and I truly hope this bond will last forever.  
+      Please forgive me for being a little late — I was so tired and fell asleep early.  
+      On your special day, I just want to remind you not to work too hard. Take care of yourself, stay safe, and protect your health.  
+      I also hope you find true love and happiness that makes you smile every single day. You mean a lot to me, and I’ll always be wishing the very best for you 💕✨
+    </p>
+  </div>
 
-      <!-- Collage section -->
-      <div id="collage" class="content-section">
-        <img src="collage1.jpg" alt="Collage" style="width:100%; border-radius:8px;">
-        <p style="text-align:center;">Our best memories 🥰</p>
-      </div>
-
-      <!-- Footer text -->
-      <div class="footer-text">I hope u like it 💖</div>
-    </div>
-
-    <!-- Extra description under box -->
-    <div class="extra-text">
-      <p>text</p>
-      <p>text</p>
-      <p>text</p>
+  <!-- Video box -->
+  <div class="video-box">
+    <video controls>
+      <source src="23.mp4" type="video/mp4">
+      Your browser does not support video.
+    </video>
+    <div class="caption">
+      I edited this chorus part of the MV that’s been stuck in my head these past few months 🎶.  
+      I even used your picture while learning more about editing — so here’s my little work for you 💕.  
+      If I had to rate it… hmm maybe ⭐⭐⭐⭐☆ (just kidding 😆).
     </div>
   </div>
 
   <script>
-    function showContent(section) {
-      let tabs = document.querySelectorAll('.tab');
-      let contents = document.querySelectorAll('.content-section');
-      
-      tabs.forEach(tab => tab.classList.remove('active'));
-      contents.forEach(c => c.classList.remove('active'));
-      
-      document.querySelector('.tab[onclick="showContent(\''+section+'\')"]').classList.add('active');
-      document.getElementById(section).classList.add('active');
+    // Confetti colors
+    const colors = ["#ff0", "#f0f", "#0ff", "#0f0", "#f00", "#00f", "#ffa500"];
+
+    function createConfetti() {
+      const confetti = document.createElement("div");
+      confetti.classList.add("confetti");
+      confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+      confetti.style.left = Math.random() * 100 + "vw";
+      confetti.style.animationDuration = (Math.random() * 2 + 3) + "s";
+      confetti.style.opacity = Math.random();
+      confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+      document.body.appendChild(confetti);
+
+      setTimeout(() => {
+        confetti.remove();
+      }, 5000);
     }
+
+    // Spawn confetti for 3 seconds
+    let confettiInterval = setInterval(createConfetti, 100);
+    setTimeout(() => clearInterval(confettiInterval), 3000);
   </script>
+
 </body>
 </html>
